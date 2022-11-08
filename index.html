@@ -10,9 +10,14 @@
     <script src="app.js"></script>
   </head>
   <body>
-
-      <div class="search">
-        <button id="btn">Search</button>
+      <form action="superheroes.php" method="post">
+            <label for="search">Search:</label><br>
+            <input type="text" id="search" name="search" placeholder="e.g. Captain America or Steve Rogers"><br>
+          </form>
+          <button id="btn" type="submit">SEARCH</button>
+          <h2>RESULT</h2>
+      </div>
+          <p id="result"></p>
       </div>
 
   </body>

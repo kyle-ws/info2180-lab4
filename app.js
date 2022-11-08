@@ -1,21 +1,26 @@
-window.addEventListener('load', function() {
-    let findBtn = document.getElementById('btn');
+window.onload= function(){
 
-    findBtn.addEventListener('click', function(element) {
-        element.preventDefault();
+    let button= document.getElementById("btn");
+    let result = document.getElementById("result")
+    let searchAct = document.getElementById("search");
 
-        fetch("superheroes.php")
-            .then(response => {
-                if (response.ok) {
-                    return response.text()
-                } else {
-                    return Promise.reject('something went wrong!')
-                }
-            })
-            .then(data => {
-                let quote = document.querySelector('#quote');
-                alert(`Superheroes list \n ${data}`);
-            })
-            .catch(error => console.log('There was an error: ' + error));
+    button.addEventListener("click", function(e){
+        
+        httpReq= new XMLHttpRequest();
+        let url ="http://localhost/info2180-lab4/superheroes.php?query="+searchAct.value+"";
+        httpReq.open('GET',url);
+        httpReq.send();
+        httpReq.onreadystatechange= response;
     });
-});
+
+    function response(){
+        if(httpReq.readyState=== XMLHttpRequest.DONE){
+            if(httpReq.status===200){
+                result.innerHTML=httpReq.responseText;
+            }else{
+                alert('There has been an Error')
+                }
+            }
+            
+    }
+}
